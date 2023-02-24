@@ -143,7 +143,7 @@ void findSalaryByName(string name)
             }
             else
             {
-                cout << "Il dipendente " << name << " lavora gratis" << endl;  // caso in cui esiste il dipendente ma non lo stipendio
+                cout << "Il dipendente " << name << " lavora gratis" << endl; // caso in cui esiste il dipendente ma non lo stipendio
             }
         }
         else // il nome che ho cercato non corrisponde a nessuna matricola
@@ -159,6 +159,10 @@ void findSalaryByName(string name)
     fileStipendi.close();
 }
 
+void findSalaryWithStraordinarioByName(string input)
+{
+}
+
 int main()
 {
     cout << "Benvenuto nel programma di calcolo stipendi" << endl;
@@ -170,7 +174,9 @@ int main()
         cout << "Inserisci il numero della funzionalita' che vuoi attivare" << endl;
         cout << "1. Matricola -> Nome" << endl;
         cout << "2. Matricola -> Stipendio" << endl;
-        cout << "3. Nome -> Stipendio" << endl
+        cout << "3. Nome -> Stipendio" << endl;
+        cout << "4. Matricola -> Stipendio + Straordinari" << endl
+
              << endl;
         int scelta;
         cin >> scelta;
@@ -178,7 +184,7 @@ int main()
         string input;
         cin >> input;
 
-        if (scelta < 1 || scelta > 3)
+        if (scelta < 1 || scelta > 4)
         {
             cout << "Scelta non valida" << endl;
         }
@@ -197,6 +203,11 @@ int main()
             else if (scelta == 3)
             {
                 findSalaryByName(input);
+                flag = false;
+            }
+            else if (scelta == 4 and input.length() == 5)
+            {
+                findSalaryWithStraordinarioByName(input);
                 flag = false;
             }
             else

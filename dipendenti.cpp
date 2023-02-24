@@ -143,7 +143,7 @@ void findSalaryByName(string name)
             }
             else
             {
-                cout << "Il dipendente " << name << " lavora gratis" << endl;
+                cout << "Il dipendente " << name << " lavora gratis" << endl;  // caso in cui esiste il dipendente ma non lo stipendio
             }
         }
         else // il nome che ho cercato non corrisponde a nessuna matricola

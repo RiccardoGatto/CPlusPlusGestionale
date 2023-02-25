@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-
 using namespace std;
 string getSecondByFirst(string nomeFile, string word)
 {
@@ -35,7 +34,6 @@ string getSecondByFirst(string nomeFile, string word)
         return "errorAp";
     }
 }
-
 string getFirstBySecond(string nomeFile, string word)
 {
     string first;
@@ -69,7 +67,6 @@ string getFirstBySecond(string nomeFile, string word)
         return "errorAp";
     }
 }
-
 void findNameByCod(string cod) //  scelta 1
 {
     string nome = getSecondByFirst("matricola.txt", cod);
@@ -86,7 +83,6 @@ void findNameByCod(string cod) //  scelta 1
         cout << "Matricola: " << cod << "   Nome dipendente: " << nome << endl;
     }
 }
-
 void findSalaryByCod(string cod) // scelta 2
 {
     string stipendio = getSecondByFirst("stipendio.txt", cod);
@@ -103,7 +99,6 @@ void findSalaryByCod(string cod) // scelta 2
         cout << "Matricola: " << cod << "     Stipendio: " << stipendio << endl;
     }
 }
-
 void findStraordinaryByCod(string cod) // scelta 3
 {
     string straordinari = getSecondByFirst("straordinari.txt", cod);
@@ -120,7 +115,6 @@ void findStraordinaryByCod(string cod) // scelta 3
         cout << "Matricola: " << cod << "   ha effettuato " << straordinari << " ore di straordinario." << endl;
     }
 }
-
 void findSalaryByName(string name) // scelta 4
 {
     string matricola = getFirstBySecond("matricola.txt", name);
@@ -145,7 +139,6 @@ void findSalaryByName(string name) // scelta 4
         }
     }
 }
-
 void findSalaryAndStraordinaryByCod(string cod) // scelta 5
 {
     string stipendio = getSecondByFirst("stipendio.txt", cod);
@@ -166,7 +159,8 @@ void findSalaryAndStraordinaryByCod(string cod) // scelta 5
         }
         else if (ore == "error")
         {
-            cout << "Matricola: " << cod << "     Stipendio: " << stipendio << "     Ore straordinari: 0" << "     Stipendio totale: " << stipendio << endl;
+            cout << "Matricola: " << cod << "     Stipendio: " << stipendio << "     Ore straordinari: 0"
+                 << "     Stipendio totale: " << stipendio << endl;
         }
         else
         {
@@ -174,15 +168,14 @@ void findSalaryAndStraordinaryByCod(string cod) // scelta 5
         }
     }
 }
-
 int main()
 {
     cout << "Benvenuto nel programma di calcolo stipendi" << endl;
-
     bool flag = true;
     int scelta;
     string input;
-    while (flag)
+    char conferma = 'y';
+    while (flag and conferma == 'y')
     {
         cout << "------------------------------------------------------" << endl;
         cout << "Inserisci il numero della funzionalita' che vuoi attivare" << endl;
@@ -191,50 +184,52 @@ int main()
         cout << "3. Matricola -> Straordinari" << endl;
         cout << "4. Nome -> Stipendio" << endl;
         cout << "5. Matricola -> Stipendio + straordinari (35h)" << endl;
-        cout << "0. EXIT" << endl;
+        cout << "0. EXIT\n"
+             << endl;
+        cout << "Seleziona: ";
         cin >> scelta;
-        cout << "Inserisci quello che vuoi cercare: ";
-        cin >> input;
-
-        if (scelta < 0 || scelta > 5) // DA MODIFICARE IN CASO DI AGGIUNTE NEL MENU
+        if (scelta == 0)
         {
-            cout << "Scelta non valida" << endl;
+            flag = false;
         }
         else
         {
-            if (scelta == 1 && input.length() == 5)
-            {
-                findNameByCod(input);
-                flag = false;
-            }
-            else if (scelta == 2 && input.length() == 5)
-            {
-                findSalaryByCod(input);
-                flag = false;
-            }
-            else if (scelta == 3)
-            {
-                findStraordinaryByCod(input);
-                flag = false;
-            }
-            else if (scelta == 4)
-            {
-                findSalaryByName(input);
-                flag = false;
-            }
-            else if (scelta == 5 && input.length() == 5)
-            {
-                findSalaryAndStraordinaryByCod(input);
-                flag = false;
-            }
-            else if (scelta == 0)
-            {
-                flag = false;
-            }
-            else
+            if (scelta < 1 || scelta > 5) // DA MODIFICARE IN CASO DI AGGIUNTE NEL MENU
             {
                 cout << "Scelta non valida" << endl;
             }
+            else
+            {
+                cout << "Inserisci quello che vuoi cercare: ";
+                cin >> input;
+                cout << endl;
+                if (scelta == 1 && input.length() == 5)
+                {
+                    findNameByCod(input);
+                }
+                else if (scelta == 2 && input.length() == 5)
+                {
+                    findSalaryByCod(input);
+                }
+                else if (scelta == 3 && input.length() == 5)
+                {
+                    findStraordinaryByCod(input);
+                }
+                else if (scelta == 4)
+                {
+                    findSalaryByName(input);
+                }
+                else if (scelta == 5 && input.length() == 5)
+                {
+                    findSalaryAndStraordinaryByCod(input);
+                }
+                else
+                {
+                    cout << "Scelta non valida" << endl;
+                }
+            }
+            cout << "\nVuoi continuare a consultare? (y per continuare, qualsiasi altro tasto per uscire)  ";
+            cin >> conferma;
         }
     }
     cout << "Arrivederci" << endl;
